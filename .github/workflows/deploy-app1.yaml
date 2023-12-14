@@ -1,4 +1,4 @@
-name: Deploy on pull request to master
+name: Deploy App1 on pull request to master
 
 on:
   push:
@@ -13,7 +13,7 @@ env:
   IMAGE_NAME: ${{ github.repository }}-app1
 
 jobs:
-  deploy:
+  deploy-app1:
     runs-on: ubuntu-latest
     
     permissions:
