@@ -1,4 +1,4 @@
-name: Deploy on pull request to master
+name: Deploy App2 on pull request to master
 
 on:
   push:
@@ -13,7 +13,7 @@ env:
   IMAGE_NAME: ${{ github.repository }}-app2
 
 jobs:
-  deploy:
+  deploy-app2:
     runs-on: ubuntu-latest
     
     permissions:
@@ -58,7 +58,7 @@ jobs:
         uses: snok/container-retention-policy@v2
         with:
           image-names: ${{ github.event.repository.name }}-app2
-          cut-off: 1 day ago UTC
+          cut-off: 1 hour ago UTC
           timestamp-to-use: updated_at
           account-type: org
           org-name: ${{ github.repository_owner }}
