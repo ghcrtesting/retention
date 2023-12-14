@@ -61,7 +61,7 @@ jobs:
           cut-off: 1 day ago UTC
           timestamp-to-use: updated_at
           account-type: org
-          org-name: ghcr-testing
+          org-name: ${{ github.repository_owner }}
           keep-at-least: 0
           untagged-only: true
           token: ${{ secrets.PAT }}
