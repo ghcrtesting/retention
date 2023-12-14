@@ -57,7 +57,7 @@ jobs:
       - name: Cleanup old packages
         uses: snok/container-retention-policy@v2
         with:
-          image-names: ${{ github.repository }}-app2
+          image-names: *
           cut-off: now UTC
           timestamp-to-use: updated_at
           account-type: org
