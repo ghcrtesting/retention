@@ -1,0 +1,26 @@
+name: Cleanup packages on closed pull request to master
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - master
+
+jobs:
+  cleanup-packages:
+    name: Cleanup PR packages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cleanup App1 and App2 packages
+        uses: snok/container-retention-policy@v2
+        with:
+          image-names: ${{ github.event.repository.name }}-app1 ${{ github.event.repository.name }}-app2
+          cut-off: now UTC
+          timestamp-to-use: updated_at
+          account-type: org
+          org-name: ghcr-testing
+          keep-at-least: 0
+          filter-tags: pr-${{github.event.pull_request.number}}
+          token: ${{ secrets.PAT }}
+          # dry-run: true
