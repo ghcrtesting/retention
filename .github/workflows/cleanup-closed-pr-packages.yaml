@@ -15,7 +15,7 @@ jobs:
       - name: Cleanup App1 and App2 packages
         uses: snok/container-retention-policy@v2
         with:
-          image-names: ${{ github.event.repository.name }}-app1 ${{ github.event.repository.name }}-app2
+          image-names: ${{ github.event.repository.name }}-app1, ${{ github.event.repository.name }}-app2
           cut-off: now UTC
           timestamp-to-use: updated_at
           account-type: org
