@@ -58,11 +58,11 @@ jobs:
         uses: snok/container-retention-policy@v2
         with:
           image-names: ${{ github.event.repository.name }}-app2
-          cut-off: 1 day ago UTC
+          cut-off: now UTC
           timestamp-to-use: updated_at
           account-type: org
           org-name: ${{ github.repository_owner }}
           keep-at-least: 0
           untagged-only: true
           token: ${{ secrets.PAT }}
-          # dry-run: true
+          dry-run: true
