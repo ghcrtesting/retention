@@ -49,7 +49,7 @@ jobs:
           context: .
           push: true
           file: Dockerfile-app1
-          tags: custom_tag
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:custom_tag
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             BUILDKIT_CONTEXT_KEEP_GIT_DIR=true
