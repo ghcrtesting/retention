@@ -1,0 +1,34 @@
+name: Retention policy for app1 and app2 packages
+
+on:
+  schedule:
+    - cron: '30 4 * * MON'
+  workflow_dispatch:
+
+jobs:
+  cleanup-packages:
+    name: Cleanup old packages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cleanup app1 and app2 old PR packages
+        uses: snok/container-retention-policy@v2
+        with:
+          image-names: ${{ github.event.repository.name }}-app1, ${{ github.event.repository.name }}-app2
+          cut-off: 12 hours ago UTC
+          timestamp-to-use: created_at
+          account-type: org
+          org-name: ${{ github.repository_owner }}
+          keep-at-least: 0
+          untagged-only: true
+          token: ${{ secrets.PAT }}
+      - name: Cleanup app1 and app2 old master packages
+        uses: snok/container-retention-policy@v2
+        with:
+          image-names: ${{ github.event.repository.name }}-app1, ${{ github.event.repository.name }}-app2
+          cut-off: 1 day ago UTC
+          timestamp-to-use: created_at
+          account-type: org
+          org-name: ${{ github.repository_owner }}
+          keep-at-least: 3
+          filter-tags: master-*
+          token: ${{ secrets.PAT }}
