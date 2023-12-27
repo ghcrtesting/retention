@@ -55,6 +55,8 @@ jobs:
         uses: docker/metadata-action@v5.4.0
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=ref,event=pr
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
@@ -63,7 +65,7 @@ jobs:
           context: .
           push: true
           file: Dockerfile-app2
-          tags: pr-${{github.event.issue.number}}
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           # it seems that cache is not giving any benefit in speed, lets keep it disabled for now
           # cache-from: type=gha
