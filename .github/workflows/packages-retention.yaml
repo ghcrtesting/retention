@@ -29,6 +29,8 @@ jobs:
           timestamp-to-use: created_at
           account-type: org
           org-name: ${{ github.repository_owner }}
-          keep-at-least: 3
+          keep-at-least: 0
+          filter-include-untagged: false
           filter-tags: master-*
+          skip-tags: master # Don't remove the newest master image
           token: ${{ secrets.PAT }}
