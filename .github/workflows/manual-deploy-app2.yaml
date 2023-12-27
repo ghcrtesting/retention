@@ -63,7 +63,7 @@ jobs:
           context: .
           push: true
           file: Dockerfile-app2
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: pr-${{github.event.issue.number}}
           labels: ${{ steps.meta.outputs.labels }}
           # it seems that cache is not giving any benefit in speed, lets keep it disabled for now
           # cache-from: type=gha
