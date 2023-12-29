@@ -1,7 +1,7 @@
 name: Cleanup packages on closed pull request to master
 
 on:
-  pull_request:
+  pull_request_target:
     types:
       - closed
 
